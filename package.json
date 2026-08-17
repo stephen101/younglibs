@@ -1,0 +1,20 @@
+{
+  "name": "younglibs-sketchbook",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A personal generative-art sketchbook: p5.js sketches with live tweak panels.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "new": "node scripts/new-sketch.mjs"
+  },
+  "dependencies": {
+    "p5": "^1.11.5",
+    "tweakpane": "^4.0.5"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}

@@ -46,3 +46,9 @@ fabric.properties
 
 #Mac
 .DS_store
+
+# Node / Vite sketchbook
+node_modules/
+dist/
+*.local
+.vite/

@@ -1,0 +1,139 @@
+:root {
+  --bg: #0c0c11;
+  --bg-card: #16161f;
+  --bg-card-hover: #1d1d29;
+  --fg: #e8e6df;
+  --fg-dim: #8a8f98;
+  --accent: #c04a3b;
+  --border: #262633;
+  --radius: 12px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* ---------- Gallery ---------- */
+.gallery-head {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 24px 24px;
+}
+.gallery-head h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+.gallery-head p {
+  margin: 0;
+  color: var(--fg-dim);
+}
+
+.grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 24px 48px;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  background: var(--bg-card-hover);
+  border-color: #34344a;
+}
+.card-thumb {
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 120% at 20% 10%, #23233a 0%, #101019 60%),
+    var(--bg);
+  color: var(--fg-dim);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.card-body { padding: 12px 14px 14px; }
+.card-title { font-weight: 600; margin-bottom: 6px; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.card-tags span {
+  font-size: 11px;
+  color: var(--fg-dim);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+.card-source {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--fg-dim);
+  opacity: 0.8;
+}
+
+.gallery-foot {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+  color: var(--fg-dim);
+  font-size: 13px;
+}
+.gallery-foot code {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1px 6px;
+}
+
+/* ---------- Sketch view ---------- */
+body.is-sketch { overflow: hidden; }
+.stage {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.stage canvas { display: block; }
+
+.back {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 20;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--fg);
+  text-decoration: none;
+  background: rgba(12, 12, 17, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+.back:hover { border-color: #34344a; }
+
+/* Tweakpane dock */
+.tp-dock {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 20;
+  width: 288px;
+}
