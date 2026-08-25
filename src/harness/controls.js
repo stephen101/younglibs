@@ -32,7 +32,7 @@ function pickJsonFile(onLoad) {
 }
 
 // pane: the Tweakpane instance. ctx: harness context. fpsState: {fps}.
-export function addGlobalControls(pane, ctx, fpsState) {
+export function addGlobalControls(pane, ctx, fpsState, config) {
   const f = pane.addFolder({ title: `◆ ${ctx.title}`, expanded: true });
 
   // Seed field — edit it to jump to a specific seed.
@@ -45,6 +45,11 @@ export function addGlobalControls(pane, ctx, fpsState) {
   f.addButton({ title: 'Reseed ⟳' }).on('click', () => ctx.reseed());
   f.addBinding(ctx, 'paused', { label: 'pause' });
   f.addButton({ title: 'Save PNG ⭳' }).on('click', () => ctx.savePNG());
+  if (config && config.renderer === 'webgl' && config.orbitControl !== false) {
+    f.addButton({ title: 'Reset Camera' }).on('click', () => {
+      ctx.state.resetCamera = true;
+    });
+  }
 
   // Live frame rate as a rolling graph.
   f.addBinding(fpsState, 'fps', {

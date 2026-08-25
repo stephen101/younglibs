@@ -41,17 +41,20 @@ export default {
     reseed:    { type: 'button', title: 'Reseed ⟳', action: (ctx) => ctx.reseed() },
   },
 
-  setup(p, P) {
+  setup(p, P, ctx) {
     base = fibonacciSphere(P.count);
+    ctx.state.spinAngle = 0;
   },
 
-  draw(p, P) {
+  draw(p, P, ctx) {
     const bg = hexToRgb(P.bg);
     p.background(bg.r, bg.g, bg.b);
 
     const t = (p.frameCount * P.evolve) / 100;
-    p.rotateY(p.frameCount * P.spin * 0.003);
-    p.rotateX(p.frameCount * P.spin * 0.0013);
+    if (!p.mouseIsPressed) ctx.state.spinAngle = (ctx.state.spinAngle || 0) + P.spin;
+    const angle = ctx.state.spinAngle || 0;
+    p.rotateY(angle * 0.003);
+    p.rotateX(angle * 0.0013);
 
     const col = hexToRgb(P.color);
     p.stroke(col.r, col.g, col.b);

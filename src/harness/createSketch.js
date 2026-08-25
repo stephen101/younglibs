@@ -87,6 +87,13 @@ export function createSketch(config, mountEl) {
     p.draw = () => {
       fpsState.fps = p.frameRate();
       if (ctx.paused) return;
+      if (config.renderer === 'webgl' && config.orbitControl !== false) {
+        if (ctx.state.resetCamera) {
+          p.camera();
+          ctx.state.resetCamera = false;
+        }
+        p.orbitControl();
+      }
       if (config.draw) config.draw(p, P, ctx);
     };
 
@@ -111,7 +118,7 @@ export function createSketch(config, mountEl) {
   document.body.appendChild(dock);
 
   pane = new Pane({ title: 'controls', container: dock });
-  addGlobalControls(pane, ctx, fpsState);
+  addGlobalControls(pane, ctx, fpsState, config);
 
   const keys = Object.keys(params);
   if (keys.length) {
